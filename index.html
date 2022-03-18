@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>ToDo</h1>
+        <input type="text" placeholder="ToDo" v-model="todo">
+        <button @click="addTodo">Tambah ToDo</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ToDo</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="(todo, index)in listTodo" v-bind:key="index">
+                    <td v-bind:style="{'text-decoration':todo.isDone ? 'line-through': null}">{{ todo.name }}</td>
+                    <td>
+                        <button @click="markDoneTodo(index)">{{todo.isDone? 'Undone' : 'Done'}}</button>
+                        <button style="margin-left:20px" @click="deleteTodo(index)">Hapus</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
